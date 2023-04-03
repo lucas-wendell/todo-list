@@ -1,7 +1,14 @@
 import React from "react";
-
-// import { Container } from './styles';
+import { ThemeProvider } from "styled-components";
+import { Container, ImageContainer } from "./styles";
+import * as theme from "../../styles/theme";
 
 export const Login = () => {
-	return <h1>Ola login</h1>;
+	return (
+		<ThemeProvider theme={theme.dark}>
+			<Container>
+				<ImageContainer />
+			</Container>
+		</ThemeProvider>
+	);
 };
