@@ -5,17 +5,17 @@ export const Container = styled.div`
 	${({ theme }) => css`
 		width: 100vw;
 		height: 100vh;
-		background-color: ${theme.colors.bgColor};
 		position: relative;
+		background-color: ${theme.colors.bgColor};
 	`}
 `;
 
 export const ImageContainer = styled.div`
-	position: absolute;
 	left: 0;
 	right: 0;
 	height: 35%;
-	background-image: url(${bgImage});
-	background-repeat: no-repeat;
+	position: absolute;
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(${bgImage});
 `;
