@@ -12,5 +12,13 @@ export const Button = styled.button`
 		background-color: transparent;
 		color: ${theme.colors.primaryTextColor};
 		border: 1px solid ${theme.colors.borderColor};
+		transition: ease-in-out 0.7s;
+
+		&:hover {
+			cursor: pointer;
+			color: ${theme.colors.secondaryTextColor};
+			border-color: ${theme.colors.primaryTextColor};
+			background-color: ${theme.colors.primaryTextColor};
+		}
 	`}
 `;
