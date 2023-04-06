@@ -9,6 +9,9 @@ import {
 } from "./styles";
 import { ProviderButton } from "../ProviderButton";
 import { DetailForm } from "../DetailForm";
+// import { FaGoogle, FaGithub, FaTwitter } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub, FaTwitter } from "react-icons/fa";
 
 export const FormButtonContainer = () => {
 	return (
@@ -21,9 +24,17 @@ export const FormButtonContainer = () => {
 			</TextContainer>
 			<ButtonContainer>
 				<ProviderButton>
-					<span>SPANS</span>Ola mundo 1
+					<FcGoogle />
+					Google
 				</ProviderButton>
-				<ProviderButton>Ola mundo 2</ProviderButton>
+				<ProviderButton>
+					<FaGithub />
+					Github
+				</ProviderButton>
+				<ProviderButton>
+					<FaTwitter />
+					Twitter
+				</ProviderButton>
 			</ButtonContainer>
 			<DetailForm />
 		</Container>
