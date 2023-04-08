@@ -7,6 +7,7 @@ import { FormInput } from "../FormInput";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { SubmitButton } from "../SubmitButton";
 export const FormContainer = () => {
 	return (
 		<Container>
@@ -30,6 +31,7 @@ export const FormContainer = () => {
 						icon={<AiOutlineUser size="1.6rem" />}
 					/>
 				</InputContainer>
+				<SubmitButton>Sign In</SubmitButton>
 			</Form>
 			<Paragraph>
 				Don&apos;t have account?<Link>Sign Up</Link>
