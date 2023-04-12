@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import {
 	ButtonContainer,
 	Container,
@@ -7,13 +6,18 @@ import {
 	Paragraph,
 	TextContainer,
 } from "./styles";
+
 import { ProviderButton } from "../ProviderButton";
 import { DetailForm } from "../DetailForm";
-// import { FaGoogle, FaGithub, FaTwitter } from "react-icons/fa";
+
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import { AuthContext } from "../../authContext";
 
 export const FormButtonContainer = () => {
+	const { logInWithGitHub, logInWithGoogle, logInWithTwitter } =
+		useContext(AuthContext);
+
 	return (
 		<Container>
 			<TextContainer>
@@ -23,15 +27,15 @@ export const FormButtonContainer = () => {
 				</Paragraph>
 			</TextContainer>
 			<ButtonContainer>
-				<ProviderButton>
+				<ProviderButton onClick={logInWithGoogle}>
 					<FcGoogle />
 					Google
 				</ProviderButton>
-				<ProviderButton>
+				<ProviderButton onClick={logInWithGitHub}>
 					<FaGithub />
 					Github
 				</ProviderButton>
-				<ProviderButton>
+				<ProviderButton onClick={logInWithTwitter}>
 					<FaTwitter />
 					Twitter
 				</ProviderButton>
