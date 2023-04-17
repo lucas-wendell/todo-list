@@ -1,29 +1,37 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext } from "react";
 
-import { reducer } from "./reducer";
 import P from "prop-types";
-import actions from "./actions";
-
-const initiatState = {
-	token: "",
-	isError: false,
-	user: null,
-};
+import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(reducer, initiatState);
+	const navigate = useNavigate();
+
 	const value = {
-		state,
-		logInWithGitHub() {
-			dispatch({ type: actions.GITHUB_AUTH });
+		logInWithGitHub: async () => {
+			const provider = new GithubAuthProvider();
+
+			try {
+				const result = await signInWithPopup(auth, provider);
+				const uid = result.user.uid;
+
+				localStorage.setItem("uid", uid);
+				if (uid) {
+					navigate("/");
+				}
+			} catch (error) {
+				localStorage.setItem("uid", "");
+				console.log(error);
+			}
 		},
 		logInWithGoogle() {
-			dispatch({ type: actions.GOOGLE_AUTH });
+			//
 		},
 		logInWithTwitter() {
-			dispatch({ type: actions.TWITTER_AUTH });
+			//
 		},
 	};
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
