@@ -11,12 +11,11 @@ import { ProviderButton } from "../ProviderButton";
 import { DetailForm } from "../DetailForm";
 
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../authContext";
 
 export const FormButtonContainer = () => {
-	const { logInWithGitHub, logInWithGoogle, logInWithTwitter } =
-		useContext(AuthContext);
+	const { logInWithGitHub, logInWithGoogle } = useContext(AuthContext);
 
 	return (
 		<Container>
@@ -34,10 +33,6 @@ export const FormButtonContainer = () => {
 				<ProviderButton onClick={logInWithGitHub}>
 					<FaGithub />
 					Github
-				</ProviderButton>
-				<ProviderButton onClick={logInWithTwitter}>
-					<FaTwitter />
-					Twitter
 				</ProviderButton>
 			</ButtonContainer>
 			<DetailForm />

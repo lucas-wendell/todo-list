@@ -46,9 +46,6 @@ export const AuthProvider = ({ children }) => {
 				console.log(error);
 			}
 		},
-		logInWithTwitter() {
-			//
-		},
 	};
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
