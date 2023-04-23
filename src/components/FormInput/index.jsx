@@ -12,8 +12,6 @@ export const FormInput = ({
 }) => {
 	const [focusValue, setFocusValue] = useState(false);
 
-	// const handleClick = () => setFocusValue((prevValue) => !prevValue);
-
 	return (
 		<Label>
 			<Paragraph>{labelText}</Paragraph>
@@ -25,7 +23,7 @@ export const FormInput = ({
 					type={type}
 					placeholder={placeholder}
 					error={error ? "sim" : "não"}
-					register={register}
+					{...register}
 				/>
 			</Container>
 		</Label>
@@ -36,7 +34,7 @@ FormInput.propTypes = {
 	labelText: P.string.isRequired,
 	type: P.string.isRequired,
 	placeholder: P.string.isRequired,
-	register: P.string.isRequired,
-	error: P.bool.isRequired,
+	register: P.object,
+	error: P.object,
 	icon: P.node.isRequired,
 };

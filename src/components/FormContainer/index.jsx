@@ -1,37 +1,62 @@
 import React from "react";
 
-import { Container, Paragraph } from "./styles";
-import { Form } from "./styles";
-import { InputContainer } from "./styles";
-import { FormInput } from "../FormInput";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+
 import { SubmitButton } from "../SubmitButton";
+import { FormInput } from "../FormInput";
+
+import { Container, Paragraph, InputContainer, Form } from "./styles";
+
 export const FormContainer = () => {
+	const {
+		register,
+		formState: { errors },
+		handleSubmit,
+	} = useForm();
+
+	const onSubmit = (data) => {
+		console.log(data);
+	};
+
 	return (
 		<Container>
-			<Form>
+			<Form onSubmit={handleSubmit(onSubmit)}>
 				<InputContainer>
 					<FormInput
 						type="email"
-						error={true}
+						error={errors.email}
 						labelText="Email"
 						placeholder="Example@gmail.com"
-						register="ola"
+						register={register("email", {
+							required: "Required",
+							pattern: {
+								value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+								message: "Entered value does not match email format",
+							},
+						})}
 						icon={<RiLockPasswordLine size="1.6rem" />}
 					/>
 
 					<FormInput
 						type="password"
-						error={true}
 						labelText="Passaword"
 						placeholder="Type your password"
-						register="ola"
+						register={register("password", {
+							required: "Required",
+							minLength: {
+								value: 3,
+								message: "Your password must be more than 3 characters",
+							},
+						})}
+						error={errors.password}
 						icon={<AiOutlineUser size="1.6rem" />}
 					/>
 				</InputContainer>
-				<SubmitButton>Sign In</SubmitButton>
+				<SubmitButton type="submit">Sign In</SubmitButton>
 			</Form>
 			<Paragraph>
 				Don&apos;t have account?<Link>Sign Up</Link>

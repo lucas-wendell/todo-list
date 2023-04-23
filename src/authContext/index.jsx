@@ -46,6 +46,9 @@ export const AuthProvider = ({ children }) => {
 				console.log(error);
 			}
 		},
+		logInWithEmail: () => {
+			console.log("ola mundo");
+		},
 	};
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

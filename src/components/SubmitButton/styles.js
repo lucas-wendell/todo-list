@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.div`
+export const Button = styled.button`
 	${({ theme }) => css`
+		border: none;
 		color: ${theme.colors.primaryTextColor};
 		background-color: ${theme.colors.activeColor};
 		width: 100%;

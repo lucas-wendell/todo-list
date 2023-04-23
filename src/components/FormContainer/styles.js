@@ -10,7 +10,7 @@ export const Container = styled.div`
 	justify-content: center;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
 	gap: 2.5rem;
 	width: 100%;
 	display: flex;
