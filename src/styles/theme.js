@@ -4,6 +4,7 @@ export const dark = {
 		bold: "700",
 	},
 	colors: {
+		errorColor: "hsl(1, 100%, 61%)",
 		activeColor: "hsl(220, 98%, 61%)",
 		bgColor: "hsl(235, 21%, 11%)",
 		navColor: "hsl(0, 0%, 98%)",
@@ -22,6 +23,7 @@ export const light = {
 		bold: "700",
 	},
 	colors: {
+		errorColor: "hsl(1, 100%, 61%)",
 		activeColor: "hsl(220, 98%, 61%)",
 		bgColor: "hsl(0, 0%, 98%)",
 		navColor: "hsl(0, 0%, 98%)",

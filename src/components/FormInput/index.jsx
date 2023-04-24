@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import P from "prop-types";
-import { Container, Label, Paragraph, Input } from "./styles";
+import { Container, Label, Paragraph, Input, ErrorSpan } from "./styles";
 
 export const FormInput = ({
 	labelText,
@@ -11,11 +11,12 @@ export const FormInput = ({
 	icon,
 }) => {
 	const [focusValue, setFocusValue] = useState(false);
+	let borderValue = error ? "tertiary" : focusValue ? "primary" : "secondary";
 
 	return (
 		<Label>
 			<Paragraph>{labelText}</Paragraph>
-			<Container borderType={focusValue ? "primary" : "secondary"}>
+			<Container borderType={borderValue}>
 				{icon}
 				<Input
 					onFocus={() => setFocusValue(true)}
@@ -26,6 +27,7 @@ export const FormInput = ({
 					{...register}
 				/>
 			</Container>
+			{error && <ErrorSpan>{error.message}</ErrorSpan>}
 		</Label>
 	);
 };

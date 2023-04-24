@@ -7,14 +7,16 @@ export const Container = styled.div`
 		border: 1px solid
 			${borderType === "primary"
 				? theme.colors.primaryTextColor
-				: theme.colors.borderColor};
-
+				: borderType === "secondary"
+				? theme.colors.borderColor
+				: theme.colors.errorColor};
 		border-radius: 0.3rem;
 		padding: 1rem 0.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
+		margin: 0.5rem 0;
 	`}
 `;
 
@@ -26,7 +28,7 @@ export const Paragraph = styled.p`
 	${({ theme }) => css`
 		color: ${theme.colors.primaryTextColor};
 		font-weight: ${theme.fontWeights.bold};
-		margin-bottom: 0.5rem;
+		/* margin-bottom: 0.5rem; */
 	`}
 `;
 
@@ -41,5 +43,12 @@ export const Input = styled.input`
 		&::placeholder {
 			color: ${theme.colors.primaryTextColor};
 		}
+	`}
+`;
+
+export const ErrorSpan = styled.span`
+	${({ theme }) => css`
+		color: ${theme.colors.errorColor};
+		font-size: 1.2rem;
 	`}
 `;
