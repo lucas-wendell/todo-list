@@ -19,7 +19,7 @@ export const FormInput = ({
 				{icon}
 				<Input
 					onFocus={() => setFocusValue(true)}
-					onBlur={() => setFocusValue(false)}
+					onBlurCapture={() => setFocusValue(false)}
 					type={type}
 					placeholder={placeholder}
 					error={error ? "sim" : "não"}
