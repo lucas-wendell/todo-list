@@ -5,6 +5,7 @@ import {
 	GithubAuthProvider,
 	GoogleAuthProvider,
 	signInWithPopup,
+	signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -46,8 +47,22 @@ export const AuthProvider = ({ children }) => {
 				console.log(error);
 			}
 		},
-		logInWithEmail: () => {
-			console.log("ola mundo");
+		logInWithEmail: async (email, password) => {
+			try {
+				const result = await signInWithEmailAndPassword(auth, email, password);
+				const uid = result.user.uid;
+				// console.log(result);
+				localStorage.setItem("uid", uid);
+				if (uid) {
+					navigate("/");
+				}
+			} catch (error) {
+				console.log(error);
+				console.log(error.message);
+				console.log(error.code);
+
+				localStorage.setItem("uid", "");
+			}
 		},
 	};
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

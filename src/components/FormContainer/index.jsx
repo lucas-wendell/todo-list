@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,16 +10,19 @@ import { SubmitButton } from "../SubmitButton";
 import { FormInput } from "../FormInput";
 
 import { Container, Paragraph, InputContainer, Form } from "./styles";
+import { AuthContext } from "../../authContext";
 
 export const FormContainer = () => {
+	const { logInWithEmail } = useContext(AuthContext);
+
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
 
-	const onSubmit = (data) => {
-		console.log(data);
+	const onSubmit = ({ email, password }) => {
+		logInWithEmail(email, password);
 	};
 
 	return (

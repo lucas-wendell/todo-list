@@ -9,8 +9,8 @@ export const LoginForm = () => {
 		<Container>
 			<AuthProvider>
 				<FormButtonContainer />
+				<FormContainer />
 			</AuthProvider>
-			<FormContainer />
 		</Container>
 	);
 };
