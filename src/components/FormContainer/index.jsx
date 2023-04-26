@@ -13,7 +13,7 @@ import { Container, Paragraph, InputContainer, Form } from "./styles";
 import { AuthContext } from "../../authContext";
 
 export const FormContainer = () => {
-	const { logInWithEmail } = useContext(AuthContext);
+	const { logInWithEmail, unsetError, loginError } = useContext(AuthContext);
 
 	const {
 		register,
@@ -22,6 +22,7 @@ export const FormContainer = () => {
 	} = useForm();
 
 	const onSubmit = ({ email, password }) => {
+		unsetError();
 		logInWithEmail(email, password);
 	};
 
@@ -31,7 +32,7 @@ export const FormContainer = () => {
 				<InputContainer>
 					<FormInput
 						type="email"
-						error={errors.email}
+						error={errors.email || loginError}
 						labelText="Email"
 						placeholder="Example@gmail.com"
 						register={register("email", {
@@ -55,7 +56,7 @@ export const FormContainer = () => {
 								message: "Your password must be more than 3 characters",
 							},
 						})}
-						error={errors.password}
+						error={errors.password || loginError}
 						icon={<AiOutlineUser size="1.6rem" />}
 					/>
 				</InputContainer>
