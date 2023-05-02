@@ -5,6 +5,7 @@ import { Container, ImageContainer } from "./styles";
 
 import { ThemeProvider } from "styled-components";
 import * as theme from "../../styles/theme";
+import { TodoListContainer } from "../../components/TodoListContainer";
 
 export const Home = () => {
 	const navigate = useNavigate();
@@ -20,6 +21,7 @@ export const Home = () => {
 	return (
 		<ThemeProvider theme={theme.dark}>
 			<Container>
+				<TodoListContainer />
 				<ImageContainer />
 			</Container>
 		</ThemeProvider>
