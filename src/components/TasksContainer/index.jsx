@@ -1,7 +1,12 @@
 import React from "react";
 
 import { Container } from "./styles";
+import { CommandBar } from "../CommandBar";
 
 export const TasksContainer = () => {
-	return <Container>ola</Container>;
+	return (
+		<Container>
+			<CommandBar />
+		</Container>
+	);
 };
