@@ -7,7 +7,6 @@ export const Container = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		color: ${theme.colors.circleColor};
-		border-top: 0.1rem solid ${theme.colors.tertiaryTextColor};
 
 		.filtersParagraph {
 			text-transform: capitalize;
