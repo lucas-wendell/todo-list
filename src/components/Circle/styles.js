@@ -6,5 +6,6 @@ export const Container = styled.div`
 		height: 1.5rem;
 		border: 0.1rem solid ${theme.colors.circleColor};
 		border-radius: 50%;
+		transition: all 300ms ease-in-out;
 	`}
 `;

@@ -10,13 +10,6 @@ export const Label = styled.label`
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-
-		.circle {
-			width: 1.5rem;
-			height: 1.5rem;
-			border: 0.1rem solid ${theme.colors.circleColor};
-			border-radius: 50%;
-		}
 	`}
 `;
 
