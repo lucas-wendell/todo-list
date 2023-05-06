@@ -11,7 +11,12 @@ export const TasksContainer = () => {
 	return (
 		<Container>
 			{tasks.map((task) => (
-				<Task key={task.id} title={task.title} isCompleted={task.isCompleted} />
+				<Task
+					key={task.id}
+					title={task.title}
+					isCompleted={task.isCompleted}
+					id={task.id}
+				/>
 			))}
 			<CommandBar />
 		</Container>

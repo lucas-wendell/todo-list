@@ -7,16 +7,20 @@ import { Circle } from "../Circle";
 import { MdClose } from "react-icons/md";
 import { TasksContext } from "../../taskContext";
 
-export const Task = ({ isCompleted, title }) => {
+export const Task = ({ isCompleted, title, id }) => {
 	const { deleteTask, toggleTaskState } = useContext(TasksContext);
 
 	return (
 		<Container>
 			<TitleContainer>
-				<Circle isActive={isCompleted} onClick={toggleTaskState} />
+				<Circle isActive={isCompleted} onClick={() => toggleTaskState(id)} />
 				<p>{title}</p>
 			</TitleContainer>
-			<MdClose size="1.5rem" className="deleteIcon" onClick={deleteTask} />
+			<MdClose
+				size="1.5rem"
+				className="deleteIcon"
+				onClick={() => deleteTask(id)}
+			/>
 		</Container>
 	);
 };
@@ -24,4 +28,5 @@ export const Task = ({ isCompleted, title }) => {
 Task.propTypes = {
 	isCompleted: P.bool,
 	title: P.string,
+	id: P.number,
 };

@@ -12,11 +12,21 @@ export const reducer = (state, action) => {
 		}
 		case actions.DELETE_TASK: {
 			console.log("DELETE...");
+			console.log(action.payload);
 			return { ...state };
 		}
 		case actions.TOGGLE_COMPLETED_STATE_TASK: {
 			console.log("TOGGLE...");
-			return { ...state };
+			console.log(action.payload);
+
+			return {
+				...state,
+				tasks: state.tasks.map((task) =>
+					task.id === action.payload
+						? { ...task, isCompleted: !task.isCompleted }
+						: task
+				),
+			};
 		}
 		default:
 			return { ...state };
