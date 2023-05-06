@@ -3,28 +3,32 @@ import React, { createContext, useReducer } from "react";
 import { reducer } from "./reducer";
 import actions from "./actions";
 
-export const TasksContext = createContext([
-	{
-		id: 1,
-		title: "teste",
-		isCompleted: false,
-	},
-	{
-		id: 2,
-		title: "teste 2",
-		isCompleted: true,
-	},
-	{
-		id: 3,
-		title: "teste 3",
-		isCompleted: false,
-	},
-]);
+const initialState = {
+	tasks: [
+		{
+			id: 1,
+			title: "teste",
+			isCompleted: false,
+		},
+		{
+			id: 2,
+			title: "teste 2",
+			isCompleted: true,
+		},
+		{
+			id: 3,
+			title: "teste 3",
+			isCompleted: false,
+		},
+	],
+};
+
+export const TasksContext = createContext();
 
 export const TasksProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(reducer, TasksContext);
+	const [state, dispatch] = useReducer(reducer, initialState);
 	const value = {
-		state,
+		tasks: state.tasks,
 		teste: () => {
 			dispatch({ type: actions.TESTE });
 		},
