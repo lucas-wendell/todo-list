@@ -4,9 +4,11 @@ import P from "prop-types";
 import { Container } from "./styles";
 import { BsCheck } from "react-icons/bs";
 
-export const Circle = ({ isActive = false }) => {
+export const Circle = ({ isActive = false, onClick }) => {
+	const onClickFunction = onClick ? onClick : () => {};
+
 	return (
-		<Container isActive={isActive}>
+		<Container isActive={isActive} onClick={onClickFunction}>
 			{isActive && <BsCheck size="1.2rem" />}
 		</Container>
 	);
@@ -14,4 +16,5 @@ export const Circle = ({ isActive = false }) => {
 
 Circle.propTypes = {
 	isActive: P.bool,
+	onClick: P.func,
 };
