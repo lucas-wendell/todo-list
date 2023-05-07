@@ -6,17 +6,17 @@ import actions from "./actions";
 const initialState = {
 	tasks: [
 		{
-			id: 1,
+			id: "1",
 			title: "teste",
 			isCompleted: false,
 		},
 		{
-			id: 2,
+			id: "2",
 			title: "teste 2",
 			isCompleted: true,
 		},
 		{
-			id: 3,
+			id: "3",
 			title: "teste 3",
 			isCompleted: false,
 		},
@@ -35,8 +35,8 @@ export const TasksProvider = ({ children }) => {
 		deleteTask: (id) => {
 			dispatch({ type: actions.DELETE_TASK, payload: id });
 		},
-		addTask: (id) => {
-			dispatch({ type: actions.ADD_TASK, payload: id });
+		addTask: (newTask) => {
+			dispatch({ type: actions.ADD_TASK, payload: newTask });
 		},
 		toggleTaskState: (id) => {
 			dispatch({ type: actions.TOGGLE_COMPLETED_STATE_TASK, payload: id });

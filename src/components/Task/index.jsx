@@ -28,5 +28,5 @@ export const Task = ({ isCompleted, title, id }) => {
 Task.propTypes = {
 	isCompleted: P.bool,
 	title: P.string,
-	id: P.number,
+	id: P.string,
 };

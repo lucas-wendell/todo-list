@@ -7,8 +7,8 @@ export const reducer = (state, action) => {
 			return { ...state };
 		}
 		case actions.ADD_TASK: {
-			console.log("ADD...");
-			return { ...state };
+			// console.log("ADD...");
+			return { ...state, tasks: [...state.tasks, action.payload] };
 		}
 		case actions.DELETE_TASK: {
 			console.log("DELETE...");
