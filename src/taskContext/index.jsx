@@ -2,21 +2,22 @@ import P from "prop-types";
 import React, { createContext, useReducer } from "react";
 import { reducer } from "./reducer";
 import actions from "./actions";
+import { uid } from "uid";
 
 const initialState = {
 	tasks: [
 		{
-			id: "1",
+			id: uid(16),
 			title: "teste",
 			isCompleted: false,
 		},
 		{
-			id: "2",
+			id: uid(16),
 			title: "teste 2",
 			isCompleted: true,
 		},
 		{
-			id: "3",
+			id: uid(16),
 			title: "teste 3",
 			isCompleted: false,
 		},
