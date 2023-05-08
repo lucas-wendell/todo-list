@@ -1,10 +1,13 @@
 import P from "prop-types";
 import React, { createContext, useReducer } from "react";
-import { reducer } from "./reducer";
+
 import actions from "./actions";
+import { reducer } from "./reducer";
+
 import { uid } from "uid";
 
 const initialState = {
+	filterBy: "all",
 	tasks: [
 		{
 			id: uid(16),
@@ -28,10 +31,24 @@ export const TasksContext = createContext();
 
 export const TasksProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	const filteredTasks = state.tasks.filter((task) => {
+		if (state.filterBy === "all") {
+			return task;
+		} else if (state.filterBy === "completed") {
+			return task.isCompleted === true;
+		} else {
+			return !task.isCompleted;
+		}
+	});
+
 	const value = {
-		tasks: state.tasks,
+		tasks: filteredTasks,
 		teste: () => {
 			dispatch({ type: actions.TESTE });
+		},
+		filterTasks: (filterValue) => {
+			dispatch({ type: actions.FILTER_TASKS_BY, payload: filterValue });
 		},
 		deleteTask: (id) => {
 			dispatch({ type: actions.DELETE_TASK, payload: id });
