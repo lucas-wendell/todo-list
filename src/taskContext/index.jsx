@@ -44,6 +44,7 @@ export const TasksProvider = ({ children }) => {
 
 	const value = {
 		tasks: filteredTasks,
+		tasksLeft: state.tasks.filter((task) => !task.isCompleted).length,
 		teste: () => {
 			dispatch({ type: actions.TESTE });
 		},
