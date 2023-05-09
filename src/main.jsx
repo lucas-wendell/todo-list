@@ -4,6 +4,7 @@ import { Home } from "./page/App";
 import { GlobalStyles } from "./styles/global-styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "./page/Login";
+import { ThemeContextProvider } from "./themeContext";
 
 const router = createBrowserRouter([
 	{
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
-		<GlobalStyles />
+		<ThemeContextProvider>
+			<RouterProvider router={router} />
+			<GlobalStyles />
+		</ThemeContextProvider>
 	</React.StrictMode>
 );
