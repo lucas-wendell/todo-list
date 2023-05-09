@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import React, { useContext, useEffect, useRef } from "react";
 
 import { Container, FiltersContainer } from "./styles";
@@ -5,7 +8,8 @@ import { TasksContext } from "../../taskContext";
 
 export const CommandBar = () => {
 	const activeParagraph = useRef(null);
-	const { filterTasks, tasksLeft } = useContext(TasksContext);
+	const { filterTasks, tasksLeft, clearCompletedTasks } =
+		useContext(TasksContext);
 
 	useEffect(() => {
 		activeParagraph.current.classList.add("active");
@@ -25,6 +29,11 @@ export const CommandBar = () => {
 		filterTasks(filterValue);
 	};
 
+	const handleOnClearComponentIsClicked = () => {
+		// console.log("ola");
+		clearCompletedTasks();
+	};
+
 	return (
 		<Container>
 			<p>{tasksLeft} items left</p>
@@ -39,7 +48,9 @@ export const CommandBar = () => {
 					Completed
 				</p>
 			</FiltersContainer>
-			<p className="filtersParagraph">Clear Completed</p>
+			<p className="filtersParagraph" onClick={handleOnClearComponentIsClicked}>
+				Clear Completed
+			</p>
 		</Container>
 	);
 };

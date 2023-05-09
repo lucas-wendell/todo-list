@@ -48,6 +48,9 @@ export const TasksProvider = ({ children }) => {
 		teste: () => {
 			dispatch({ type: actions.TESTE });
 		},
+		clearCompletedTasks: () => {
+			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
+		},
 		filterTasks: (filterValue) => {
 			dispatch({ type: actions.FILTER_TASKS_BY, payload: filterValue });
 		},
