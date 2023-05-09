@@ -11,5 +11,9 @@ export const Container = styled.div`
 		.heading {
 			letter-spacing: 0.8rem;
 		}
+
+		.iconContainer {
+			cursor: pointer;
+		}
 	`}
 `;
