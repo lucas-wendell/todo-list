@@ -15,6 +15,7 @@ export const dark = {
 		taskBgColor: "hsl(235, 24%, 19%)",
 		borderColor: "hsl(237, 14%, 26%)",
 	},
+	image: "darkImage",
 };
 
 export const light = {
@@ -34,4 +35,5 @@ export const light = {
 		taskBgColor: "hsl(0, 0%, 98%)",
 		borderColor: "hsl(233, 11%, 84%)",
 	},
+	image: "lightImage",
 };

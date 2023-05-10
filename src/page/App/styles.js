@@ -1,5 +1,11 @@
 import styled, { css } from "styled-components";
-import bgImage from "../../assets/bg-desktop-dark.jpg";
+import bgDarkImage from "../../assets/bg-desktop-dark.jpg";
+import bgLightImage from "../../assets/bg-desktop-light.jpg";
+
+const images = {
+	lightImage: bgLightImage,
+	darkImage: bgDarkImage,
+};
 
 export const Container = styled.div`
 	${({ theme }) => css`
@@ -11,11 +17,13 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-	left: 0;
-	right: 0;
-	height: 35%;
-	position: absolute;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-image: url(${bgImage});
+	${({ theme }) => css`
+		left: 0;
+		right: 0;
+		height: 35%;
+		position: absolute;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-image: url(${images[theme.image]});
+	`}
 `;
