@@ -5,16 +5,21 @@ import actions from "./actions";
 import { reducer } from "./reducer";
 
 const initialState = {
-	theme: "dark",
+	theme: localStorage.getItem("theme") || "dark",
 };
 
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+	const localStorageValue = localStorage.getItem("theme");
+	const themeValue =
+		localStorageValue && localStorageValue !== ""
+			? localStorageValue
+			: state.theme;
 
 	const value = {
-		theme: state.theme,
+		theme: themeValue,
 		toggleTheme: () => {
 			dispatch({ type: actions.TOGGLE_THEME });
 		},
