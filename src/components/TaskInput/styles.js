@@ -20,6 +20,7 @@ export const Input = styled.input`
 		border: none;
 		color: ${theme.colors.primaryTextColor};
 		caret-color: ${theme.colors.activeColor};
+		width: 100%;
 
 		&::placeholder {
 			color: ${theme.colors.primaryTextColor};
