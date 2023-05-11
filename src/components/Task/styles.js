@@ -8,6 +8,7 @@ export const Container = styled.div`
 		justify-content: space-between;
 		border-bottom: 0.1rem solid ${theme.colors.tertiaryTextColor};
 		padding: 1rem;
+		background-color: ${theme.colors.taskBgColor};
 
 		.deleteIcon {
 			color: ${theme.colors.circleColor};
