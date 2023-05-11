@@ -9,6 +9,9 @@ export const reducer = (state, action) => {
 		case actions.ADD_TASK: {
 			return { ...state, tasks: [...state.tasks, action.payload] };
 		}
+		case actions.REORDER_TASKS: {
+			return { ...state, tasks: [...action.payload] };
+		}
 		case actions.FILTER_TASKS_BY: {
 			return { ...state, filterBy: action.payload };
 		}

@@ -18,10 +18,8 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<ThemeContextProvider>
-			<RouterProvider router={router} />
-			<GlobalStyles />
-		</ThemeContextProvider>
-	</React.StrictMode>
+	<ThemeContextProvider>
+		<RouterProvider router={router} />
+		<GlobalStyles />
+	</ThemeContextProvider>
 );

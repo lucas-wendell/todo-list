@@ -48,6 +48,9 @@ export const TasksProvider = ({ children }) => {
 		teste: () => {
 			dispatch({ type: actions.TESTE });
 		},
+		reorderTasks: (newTasksPosition) => {
+			dispatch({ type: actions.REORDER_TASKS, payload: newTasksPosition });
+		},
 		clearCompletedTasks: () => {
 			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
 		},
