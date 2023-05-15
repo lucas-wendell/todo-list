@@ -1,24 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import * as themes from "../../styles/theme";
 
 import { useNavigate } from "react-router-dom";
 import { Container, ImageContainer } from "./styles";
 
 import { ThemeProvider } from "styled-components";
-import * as themes from "../../styles/theme";
 import { TodoListContainer } from "../../components/TodoListContainer";
+
 import { TasksProvider } from "../../taskContext";
 import { ThemeContext } from "../../themeContext";
+
+import Cookies from "js-cookie";
 
 export const Home = () => {
 	const navigate = useNavigate();
 	const { theme } = useContext(ThemeContext);
-	const uid = localStorage.getItem("uid");
+	const userRef = useRef(Cookies.get("user"));
 
 	useEffect(() => {
-		if (uid === "" || !uid) {
+		if (userRef.current === "" || !userRef.current) {
 			navigate("/login");
 			return;
 		}
+		userRef.current = JSON.parse(Cookies.get("user"));
 	});
 
 	return (
