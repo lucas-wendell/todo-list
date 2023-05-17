@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import P from "prop-types";
 
 import { Container, ProfileContainer, TextContainer } from "./styles";
 import { AiOutlineLogout } from "react-icons/ai";
+import { AuthContext } from "../../authContext";
 
 export const UserComponent = ({ name, profilePicture, email }) => {
+	const { logOut } = useContext(AuthContext);
 	return (
 		<Container>
 			<ProfileContainer>
 				<div className="buttonDiv">
-					<button
-						onClick={() => console.log("teste")}
-						title="Log Out"
-						aria-label="Log Out"
-					>
+					<button onClick={logOut} title="Log Out" aria-label="Log Out">
 						<AiOutlineLogout size="2rem" />
 					</button>
 				</div>

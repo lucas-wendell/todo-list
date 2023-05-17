@@ -7,6 +7,7 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 	signInWithEmailAndPassword,
+	signOut,
 } from "firebase/auth";
 
 import { auth } from "../utils/firebase";
@@ -29,6 +30,17 @@ const logIn = async (provider, dispatch, navigate) => {
 		}
 	} catch (error) {
 		Cookie.remove("user");
+		dispatch({ type: actions.SET_ERROR, payload: error.code });
+	}
+};
+
+const logOut = async (dispatch, navigate) => {
+	try {
+		await signOut(auth);
+
+		Cookie.remove("user");
+		navigate("/login");
+	} catch (error) {
 		dispatch({ type: actions.SET_ERROR, payload: error.code });
 	}
 };
@@ -62,6 +74,9 @@ export const AuthProvider = ({ children }) => {
 				Cookie.remove("user");
 				dispatch({ type: actions.SET_ERROR, payload: error.code });
 			}
+		},
+		logOut: () => {
+			logOut(dispatch, navigate);
 		},
 	};
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
