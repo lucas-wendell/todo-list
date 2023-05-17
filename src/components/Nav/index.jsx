@@ -5,12 +5,22 @@ import React, { useContext } from "react";
 import { Container } from "./styles";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { ThemeContext } from "../../themeContext";
+import { UserComponent } from "../UserComponent";
+import Cookie from "js-cookie";
 
 export const Nav = () => {
 	const { theme, toggleTheme } = useContext(ThemeContext);
+	const user = Cookie.get("user") ? JSON.parse(Cookie.get("user")) : {};
+	const { photoURL, displayName, email } = user;
+
 	return (
 		<Container>
-			<h1 className="heading">TODO</h1>
+			<UserComponent
+				name={displayName}
+				profilePicture={photoURL}
+				email={email}
+			/>
+
 			<div className="iconContainer" onClick={toggleTheme}>
 				{theme === "dark" ? (
 					<BsFillSunFill size="1.5rem" />
