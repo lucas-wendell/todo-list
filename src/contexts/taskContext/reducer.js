@@ -1,4 +1,4 @@
-import { databaseActions } from "../service/database-actions";
+import { databaseActions } from "../../service/database-actions";
 import actions from "./actions";
 
 export const reducer = (state, action) => {

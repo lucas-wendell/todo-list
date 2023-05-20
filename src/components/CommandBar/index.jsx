@@ -4,7 +4,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 
 import { Container, FiltersContainer } from "./styles";
-import { TasksContext } from "../../taskContext";
+import { TasksContext } from "../../contexts/taskContext";
 
 export const CommandBar = () => {
 	const activeParagraph = useRef(null);
@@ -30,7 +30,6 @@ export const CommandBar = () => {
 	};
 
 	const handleOnClearComponentIsClicked = () => {
-		// console.log("ola");
 		clearCompletedTasks();
 	};
 

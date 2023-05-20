@@ -5,7 +5,7 @@ import { Container } from "./styles";
 import { CommandBar } from "../CommandBar";
 
 import { Task } from "../Task";
-import { TasksContext } from "../../taskContext";
+import { TasksContext } from "../../contexts/taskContext";
 
 export const TasksContainer = () => {
 	const { tasks, reorderTasks } = useContext(TasksContext);

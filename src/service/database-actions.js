@@ -8,12 +8,11 @@ class DatabaseActions {
 		this.userID = userID;
 	}
 
-	async addUser(token) {
+	async addUser() {
 		try {
 			const userData = {
-				preferencialTheme: "dark",
 				tasks: [],
-				token,
+				token: this.token,
 			};
 			await setDoc(this.docRef, userData);
 		} catch (e) {
@@ -35,7 +34,7 @@ class DatabaseActions {
 		const data = await this.getUserData();
 
 		if (!data) {
-			this.addUser(this.userID);
+			this.addUser();
 			return [];
 		}
 

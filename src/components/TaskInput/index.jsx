@@ -4,7 +4,7 @@ import { uid } from "uid";
 import { Label, Input } from "./styles";
 import { Circle } from "../Circle";
 
-import { TasksContext } from "../../taskContext";
+import { TasksContext } from "../../contexts/taskContext";
 
 export const TaskInput = () => {
 	const { addTask } = useContext(TasksContext);

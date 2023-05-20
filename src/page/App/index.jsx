@@ -7,11 +7,10 @@ import { Container, ImageContainer } from "./styles";
 import { ThemeProvider } from "styled-components";
 import { TodoListContainer } from "../../components/TodoListContainer";
 
-import { TasksProvider } from "../../taskContext";
-import { ThemeContext } from "../../themeContext";
+import { TasksProvider } from "../../contexts/taskContext";
+import { ThemeContext } from "../../contexts/themeContext";
 
 import Cookies from "js-cookie";
-// import { databaseActions } from "../../service/database-actions";
 
 export const Home = () => {
 	const navigate = useNavigate();
@@ -26,7 +25,7 @@ export const Home = () => {
 
 		userRef.current = JSON.parse(Cookies.get("user"));
 	});
-	// onClick={() => databaseActions.addTask("asdasdafasdasd")}
+
 	return (
 		<ThemeProvider theme={themes[theme]}>
 			<TasksProvider>

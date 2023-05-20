@@ -3,7 +3,8 @@ import P from "prop-types";
 
 import { Container, ProfileContainer, TextContainer } from "./styles";
 import { AiOutlineLogout } from "react-icons/ai";
-import { AuthContext } from "../../authContext";
+
+import { AuthContext } from "../../contexts/authContext";
 
 export const UserComponent = ({ name, profilePicture, email }) => {
 	const { logOut } = useContext(AuthContext);

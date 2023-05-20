@@ -10,7 +10,7 @@ import { SubmitButton } from "../SubmitButton";
 import { FormInput } from "../FormInput";
 
 import { Container, Paragraph, InputContainer, Form } from "./styles";
-import { AuthContext } from "../../authContext";
+import { AuthContext } from "../../contexts/authContext";
 
 export const FormContainer = () => {
 	const { logInWithEmail, unsetError, loginError } = useContext(AuthContext);

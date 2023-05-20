@@ -4,7 +4,7 @@ import React, { createContext, useReducer } from "react";
 import actions from "./actions";
 import { reducer } from "./reducer";
 
-import { databaseActions } from "../service/database-actions";
+import { databaseActions } from "../../service/database-actions";
 import Cookies from "js-cookie";
 
 const initialState = {
@@ -19,7 +19,6 @@ export const TasksProvider = ({ children }) => {
 	const tokenString = Cookies.get("user");
 	if (!tokenString) return null;
 
-	// const token = JSON.parse(tokenString).uid;
 	const filteredTasks = state.tasks.filter((task) => {
 		if (state.filterBy === "all") {
 			return task;

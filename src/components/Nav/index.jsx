@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext } from "react";
+import Cookie from "js-cookie";
 
 import { Container } from "./styles";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { ThemeContext } from "../../themeContext";
+
+import { ThemeContext } from "../../contexts/themeContext";
 import { UserComponent } from "../UserComponent";
-import Cookie from "js-cookie";
 
 export const Nav = () => {
 	const { theme, toggleTheme } = useContext(ThemeContext);

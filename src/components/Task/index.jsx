@@ -5,7 +5,7 @@ import { Container, TitleContainer } from "./styles";
 import { Circle } from "../Circle";
 
 import { MdClose } from "react-icons/md";
-import { TasksContext } from "../../taskContext";
+import { TasksContext } from "../../contexts/taskContext";
 
 export const Task = ({ isCompleted, title, id }) => {
 	const { deleteTask, toggleTaskState } = useContext(TasksContext);
