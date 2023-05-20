@@ -11,6 +11,7 @@ import { TasksProvider } from "../../taskContext";
 import { ThemeContext } from "../../themeContext";
 
 import Cookies from "js-cookie";
+// import { databaseActions } from "../../service/database-actions";
 
 export const Home = () => {
 	const navigate = useNavigate();
@@ -22,9 +23,10 @@ export const Home = () => {
 			navigate("/login");
 			return;
 		}
+
 		userRef.current = JSON.parse(Cookies.get("user"));
 	});
-
+	// onClick={() => databaseActions.addTask("asdasdafasdasd")}
 	return (
 		<ThemeProvider theme={themes[theme]}>
 			<TasksProvider>

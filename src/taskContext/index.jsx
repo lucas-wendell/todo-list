@@ -4,34 +4,22 @@ import React, { createContext, useReducer } from "react";
 import actions from "./actions";
 import { reducer } from "./reducer";
 
-import { uid } from "uid";
+import { databaseActions } from "../service/database-actions";
+import Cookies from "js-cookie";
 
 const initialState = {
 	filterBy: "all",
-	tasks: [
-		{
-			id: uid(16),
-			title: "teste",
-			isCompleted: false,
-		},
-		{
-			id: uid(16),
-			title: "teste 2",
-			isCompleted: true,
-		},
-		{
-			id: uid(16),
-			title: "teste 3",
-			isCompleted: false,
-		},
-	],
+	tasks: await databaseActions.getInitialData(),
 };
 
 export const TasksContext = createContext();
 
 export const TasksProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+	const tokenString = Cookies.get("user");
+	if (!tokenString) return null;
 
+	const token = JSON.parse(tokenString).uid;
 	const filteredTasks = state.tasks.filter((task) => {
 		if (state.filterBy === "all") {
 			return task;
@@ -52,19 +40,25 @@ export const TasksProvider = ({ children }) => {
 			dispatch({ type: actions.REORDER_TASKS, payload: newTasksPosition });
 		},
 		clearCompletedTasks: () => {
-			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
+			dispatch({ type: actions.CLEAR_COMPLETED_TASKS, payload: { token } });
 		},
 		filterTasks: (filterValue) => {
 			dispatch({ type: actions.FILTER_TASKS_BY, payload: filterValue });
 		},
 		deleteTask: (id) => {
-			dispatch({ type: actions.DELETE_TASK, payload: id });
+			dispatch({
+				type: actions.DELETE_TASK,
+				payload: { id, token },
+			});
 		},
 		addTask: (newTask) => {
-			dispatch({ type: actions.ADD_TASK, payload: newTask });
+			dispatch({ type: actions.ADD_TASK, payload: { task: newTask, token } });
 		},
 		toggleTaskState: (id) => {
-			dispatch({ type: actions.TOGGLE_COMPLETED_STATE_TASK, payload: id });
+			dispatch({
+				type: actions.TOGGLE_COMPLETED_STATE_TASK,
+				payload: { id, token },
+			});
 		},
 	};
 

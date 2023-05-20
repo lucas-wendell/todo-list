@@ -10,7 +10,7 @@ import {
 	signOut,
 } from "firebase/auth";
 
-import { auth } from "../utils/firebase";
+import { auth } from "../service/firebase";
 import { useNavigate } from "react-router-dom";
 
 import { reducer } from "./reducer";
