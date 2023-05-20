@@ -32,17 +32,8 @@ export const TasksProvider = ({ children }) => {
 	const value = {
 		tasks: filteredTasks,
 		tasksLeft: state.tasks.filter((task) => !task.isCompleted).length,
-		teste: () => {
-			dispatch({ type: actions.TESTE });
-		},
-		reorderTasks: (newTasksPosition) => {
-			dispatch({ type: actions.REORDER_TASKS, payload: newTasksPosition });
-		},
-		clearCompletedTasks: () => {
-			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
-		},
-		filterTasks: (filterValue) => {
-			dispatch({ type: actions.FILTER_TASKS_BY, payload: filterValue });
+		addTask: (newTask) => {
+			dispatch({ type: actions.ADD_TASK, payload: newTask });
 		},
 		deleteTask: (id) => {
 			dispatch({
@@ -50,14 +41,20 @@ export const TasksProvider = ({ children }) => {
 				payload: id,
 			});
 		},
-		addTask: (newTask) => {
-			dispatch({ type: actions.ADD_TASK, payload: newTask });
-		},
 		toggleTaskState: (id) => {
 			dispatch({
 				type: actions.TOGGLE_COMPLETED_STATE_TASK,
 				payload: id,
 			});
+		},
+		reorderTasks: (newTasksPosition) => {
+			dispatch({ type: actions.REORDER_TASKS, payload: newTasksPosition });
+		},
+		filterTasks: (filterValue) => {
+			dispatch({ type: actions.FILTER_TASKS_BY, payload: filterValue });
+		},
+		clearCompletedTasks: () => {
+			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
 		},
 	};
 

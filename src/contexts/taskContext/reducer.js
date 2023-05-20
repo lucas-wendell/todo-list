@@ -3,10 +3,6 @@ import actions from "./actions";
 
 export const reducer = (state, action) => {
 	switch (action.type) {
-		case actions.TESTE: {
-			console.log("testando...");
-			return { ...state };
-		}
 		case actions.ADD_TASK: {
 			if (Array.isArray(action.payload)) {
 				return { ...state, tasks: [...action.payload] };
