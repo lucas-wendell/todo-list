@@ -18,7 +18,9 @@ export const reducer = (state, action) => {
 			return { ...state, tasks: [...state.tasks, newTask] };
 		}
 		case actions.REORDER_TASKS: {
-			return { ...state, tasks: [...action.payload] };
+			const reorderedTasks = [...action.payload];
+			databaseActions.reorderTasks(reorderedTasks);
+			return { ...state, tasks: reorderedTasks };
 		}
 		case actions.FILTER_TASKS_BY: {
 			return { ...state, filterBy: action.payload };
