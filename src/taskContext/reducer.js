@@ -13,13 +13,13 @@ export const reducer = (state, action) => {
 			}
 
 			const newTask = action.payload;
-			databaseActions.addTask(newTask);
+			databaseActions.updateTasks(newTask);
 
 			return { ...state, tasks: [...state.tasks, newTask] };
 		}
 		case actions.REORDER_TASKS: {
 			const reorderedTasks = [...action.payload];
-			databaseActions.reorderTasks(reorderedTasks);
+			databaseActions.updateTasks(reorderedTasks);
 			return { ...state, tasks: reorderedTasks };
 		}
 		case actions.FILTER_TASKS_BY: {
@@ -27,7 +27,7 @@ export const reducer = (state, action) => {
 		}
 		case actions.DELETE_TASK: {
 			const newTasks = state.tasks.filter((task) => task.id !== action.payload);
-			databaseActions.deleteTask(newTasks);
+			databaseActions.updateTasks(newTasks);
 			return {
 				...state,
 				tasks: newTasks,
@@ -36,7 +36,7 @@ export const reducer = (state, action) => {
 		case actions.CLEAR_COMPLETED_TASKS: {
 			const newTasks = state.tasks.filter((task) => !task.isCompleted);
 
-			databaseActions.clearCompletedTasks(newTasks);
+			databaseActions.updateTasks(newTasks);
 			return {
 				...state,
 				tasks: newTasks,
@@ -48,7 +48,7 @@ export const reducer = (state, action) => {
 					? { ...task, isCompleted: !task.isCompleted }
 					: task
 			);
-			databaseActions.toggleTasksState(newTasksState);
+			databaseActions.updateTasks(newTasksState);
 			return {
 				...state,
 				tasks: newTasksState,

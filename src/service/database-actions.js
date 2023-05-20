@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 class DatabaseActions {
 	constructor(userID) {
 		this.docRef = doc(database, "users", userID);
+		this.userID = userID;
 	}
 
 	async addUser(token) {
@@ -30,82 +31,30 @@ class DatabaseActions {
 		}
 	}
 
-	async addTask(newTask) {
-		try {
-			const data = await this.getUserData();
-
-			await setDoc(this.docRef, {
-				...data,
-				tasks: [...data.tasks, newTask],
-			});
-		} catch (error) {
-			console.error("Error adding document: ", error);
-		}
-	}
-
-	async reorderTasks(newTasksPosition) {
-		try {
-			const data = await this.getUserData();
-
-			await setDoc(this.docRef, {
-				...data,
-				tasks: [...newTasksPosition],
-			});
-		} catch (error) {
-			console.error("Error adding document: ", error);
-		}
-	}
-
-	async deleteTask(newTasks) {
-		try {
-			const data = await this.getUserData();
-
-			await setDoc(this.docRef, {
-				...data,
-				tasks: [...newTasks],
-			});
-		} catch (error) {
-			console.error("Error adding document: ", error);
-		}
-	}
-
-	async clearCompletedTasks(newTasks) {
-		try {
-			const data = await this.getUserData();
-
-			await setDoc(this.docRef, {
-				...data,
-				tasks: [...newTasks],
-			});
-		} catch (error) {
-			console.error("Error adding document: ", error);
-		}
-	}
-
-	async toggleTasksState(newTasks) {
-		try {
-			const data = await this.getUserData();
-
-			await setDoc(this.docRef, {
-				...data,
-				tasks: [...newTasks],
-			});
-		} catch (error) {
-			console.error("Error adding document: ", error);
-		}
-	}
-
 	async getInitialData() {
-		const userCookie = JSON.parse(Cookies.get("user"));
-		const userID = userCookie.uid;
 		const data = await this.getUserData();
 
 		if (!data) {
-			this.addUser(userID);
+			this.addUser(this.userID);
 			return [];
 		}
 
 		return data.tasks;
+	}
+
+	async updateTasks(newTasks) {
+		try {
+			const data = await this.getUserData();
+
+			await setDoc(this.docRef, {
+				...data,
+				tasks: Array.isArray(newTasks)
+					? [...newTasks]
+					: [...data.tasks, newTasks],
+			});
+		} catch (error) {
+			console.error("Error adding document: ", error);
+		}
 	}
 }
 
