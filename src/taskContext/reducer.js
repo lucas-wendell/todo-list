@@ -8,12 +8,12 @@ export const reducer = (state, action) => {
 			return { ...state };
 		}
 		case actions.ADD_TASK: {
-			if (Array.isArray(action.payload.task)) {
+			if (Array.isArray(action.payload)) {
 				return { ...state, tasks: [...action.payload] };
 			}
 
-			const newTask = action.payload.task;
-			databaseActions.addTask(action.payload.token, newTask);
+			const newTask = action.payload;
+			databaseActions.addTask(newTask);
 
 			return { ...state, tasks: [...state.tasks, newTask] };
 		}
@@ -24,10 +24,8 @@ export const reducer = (state, action) => {
 			return { ...state, filterBy: action.payload };
 		}
 		case actions.DELETE_TASK: {
-			const newTasks = state.tasks.filter(
-				(task) => task.id !== action.payload.id
-			);
-			databaseActions.deleteTask(action.payload.token, newTasks);
+			const newTasks = state.tasks.filter((task) => task.id !== action.payload);
+			databaseActions.deleteTask(newTasks);
 			return {
 				...state,
 				tasks: newTasks,
@@ -36,7 +34,7 @@ export const reducer = (state, action) => {
 		case actions.CLEAR_COMPLETED_TASKS: {
 			const newTasks = state.tasks.filter((task) => !task.isCompleted);
 
-			databaseActions.clearCompletedTasks(action.payload.token, newTasks);
+			databaseActions.clearCompletedTasks(newTasks);
 			return {
 				...state,
 				tasks: newTasks,
@@ -44,11 +42,11 @@ export const reducer = (state, action) => {
 		}
 		case actions.TOGGLE_COMPLETED_STATE_TASK: {
 			const newTasksState = state.tasks.map((task) =>
-				task.id === action.payload.id
+				task.id === action.payload
 					? { ...task, isCompleted: !task.isCompleted }
 					: task
 			);
-			databaseActions.toggleTasksState(action.payload.token, newTasksState);
+			databaseActions.toggleTasksState(newTasksState);
 			return {
 				...state,
 				tasks: newTasksState,

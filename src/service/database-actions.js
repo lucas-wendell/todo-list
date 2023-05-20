@@ -3,24 +3,26 @@ import { database } from "./firebase";
 import Cookies from "js-cookie";
 
 class DatabaseActions {
+	constructor(userID) {
+		this.docRef = doc(database, "users", userID);
+	}
+
 	async addUser(token) {
 		try {
-			const docRef = doc(database, "users", token);
 			const userData = {
 				preferencialTheme: "dark",
 				tasks: [],
 				token,
 			};
-			await setDoc(docRef, userData);
+			await setDoc(this.docRef, userData);
 		} catch (e) {
 			console.error("Error adding document: ", e);
 		}
 	}
 
-	async getUserData(token) {
+	async getUserData() {
 		try {
-			const docRef = doc(database, "users", token);
-			const docSnap = await getDoc(docRef);
+			const docSnap = await getDoc(this.docRef);
 
 			return docSnap.data();
 		} catch (error) {
@@ -28,12 +30,11 @@ class DatabaseActions {
 		}
 	}
 
-	async addTask(token, newTask) {
+	async addTask(newTask) {
 		try {
-			const docRef = doc(database, "users", token);
-			const data = await this.getUserData(token);
+			const data = await this.getUserData();
 
-			await setDoc(docRef, {
+			await setDoc(this.docRef, {
 				...data,
 				tasks: [...data.tasks, newTask],
 			});
@@ -42,12 +43,11 @@ class DatabaseActions {
 		}
 	}
 
-	async reorderTasks(token, newTasksPosition) {
+	async reorderTasks(newTasksPosition) {
 		try {
-			const docRef = doc(database, "users", token);
-			const data = await this.getUserData(token);
+			const data = await this.getUserData();
 
-			await setDoc(docRef, {
+			await setDoc(this.docRef, {
 				...data,
 				tasks: [...newTasksPosition],
 			});
@@ -56,12 +56,11 @@ class DatabaseActions {
 		}
 	}
 
-	async deleteTask(token, newTasks) {
+	async deleteTask(newTasks) {
 		try {
-			const docRef = doc(database, "users", token);
-			const data = await this.getUserData(token);
+			const data = await this.getUserData();
 
-			await setDoc(docRef, {
+			await setDoc(this.docRef, {
 				...data,
 				tasks: [...newTasks],
 			});
@@ -70,12 +69,11 @@ class DatabaseActions {
 		}
 	}
 
-	async clearCompletedTasks(token, newTasks) {
+	async clearCompletedTasks(newTasks) {
 		try {
-			const docRef = doc(database, "users", token);
-			const data = await this.getUserData(token);
+			const data = await this.getUserData();
 
-			await setDoc(docRef, {
+			await setDoc(this.docRef, {
 				...data,
 				tasks: [...newTasks],
 			});
@@ -84,12 +82,11 @@ class DatabaseActions {
 		}
 	}
 
-	async toggleTasksState(token, newTasks) {
+	async toggleTasksState(newTasks) {
 		try {
-			const docRef = doc(database, "users", token);
-			const data = await this.getUserData(token);
+			const data = await this.getUserData();
 
-			await setDoc(docRef, {
+			await setDoc(this.docRef, {
 				...data,
 				tasks: [...newTasks],
 			});
@@ -99,10 +96,9 @@ class DatabaseActions {
 	}
 
 	async getInitialData() {
-		// if (!Cookies.get("user")) return [];
 		const userCookie = JSON.parse(Cookies.get("user"));
 		const userID = userCookie.uid;
-		const data = await this.getUserData(userID);
+		const data = await this.getUserData();
 
 		if (!data) {
 			this.addUser(userID);
@@ -113,4 +109,10 @@ class DatabaseActions {
 	}
 }
 
-export const databaseActions = new DatabaseActions();
+export const databaseActions = (() => {
+	const userCookie = Cookies.get("user");
+	if (!userCookie) return {};
+
+	const userID = JSON.parse(userCookie).uid;
+	return new DatabaseActions(userID);
+})();

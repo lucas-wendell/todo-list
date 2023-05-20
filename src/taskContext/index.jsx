@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 
 const initialState = {
 	filterBy: "all",
-	tasks: await databaseActions.getInitialData(),
+	tasks: Cookies.get("user") ? await databaseActions.getInitialData() : [],
 };
 
 export const TasksContext = createContext();
@@ -19,7 +19,7 @@ export const TasksProvider = ({ children }) => {
 	const tokenString = Cookies.get("user");
 	if (!tokenString) return null;
 
-	const token = JSON.parse(tokenString).uid;
+	// const token = JSON.parse(tokenString).uid;
 	const filteredTasks = state.tasks.filter((task) => {
 		if (state.filterBy === "all") {
 			return task;
@@ -40,7 +40,7 @@ export const TasksProvider = ({ children }) => {
 			dispatch({ type: actions.REORDER_TASKS, payload: newTasksPosition });
 		},
 		clearCompletedTasks: () => {
-			dispatch({ type: actions.CLEAR_COMPLETED_TASKS, payload: { token } });
+			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
 		},
 		filterTasks: (filterValue) => {
 			dispatch({ type: actions.FILTER_TASKS_BY, payload: filterValue });
@@ -48,16 +48,16 @@ export const TasksProvider = ({ children }) => {
 		deleteTask: (id) => {
 			dispatch({
 				type: actions.DELETE_TASK,
-				payload: { id, token },
+				payload: id,
 			});
 		},
 		addTask: (newTask) => {
-			dispatch({ type: actions.ADD_TASK, payload: { task: newTask, token } });
+			dispatch({ type: actions.ADD_TASK, payload: newTask });
 		},
 		toggleTaskState: (id) => {
 			dispatch({
 				type: actions.TOGGLE_COMPLETED_STATE_TASK,
-				payload: { id, token },
+				payload: id,
 			});
 		},
 	};
