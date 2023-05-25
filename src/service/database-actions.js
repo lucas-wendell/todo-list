@@ -16,7 +16,6 @@ class DatabaseActions {
 			};
 			await setDoc(this.docRef, userData);
 		} catch (e) {
-			console.error("Error adding document: ", e);
 			Cookies.set("error", true);
 		}
 	}
@@ -27,7 +26,6 @@ class DatabaseActions {
 
 			return docSnap.data();
 		} catch (error) {
-			console.error("Error adding document: ", error);
 			Cookies.set("error", true);
 		}
 	}
@@ -54,7 +52,6 @@ class DatabaseActions {
 					: [...data.tasks, newTasks],
 			});
 		} catch (error) {
-			console.error("Error adding document: ", error);
 			Cookies.set("error", true);
 		}
 	}
