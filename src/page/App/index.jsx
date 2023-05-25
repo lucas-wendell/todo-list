@@ -11,6 +11,7 @@ import { TasksProvider } from "../../contexts/taskContext";
 import { ThemeContext } from "../../contexts/themeContext";
 
 import Cookies from "js-cookie";
+import { Modal } from "../../components/Modal";
 
 export const Home = () => {
 	const navigate = useNavigate();
@@ -29,6 +30,7 @@ export const Home = () => {
 	return (
 		<ThemeProvider theme={themes[theme]}>
 			<TasksProvider>
+				<Modal />
 				<Container>
 					<TodoListContainer />
 					<ImageContainer />
