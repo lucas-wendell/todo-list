@@ -12,7 +12,7 @@ class DatabaseActions {
 		try {
 			const userData = {
 				tasks: [],
-				token: this.token,
+				token: this.userID,
 			};
 			await setDoc(this.docRef, userData);
 		} catch (e) {
@@ -57,10 +57,11 @@ class DatabaseActions {
 	}
 }
 
-export const databaseActions = (() => {
+export const databaseActions = () => {
 	const userCookie = Cookies.get("user");
 	if (!userCookie) return {};
 
 	const userID = JSON.parse(userCookie).uid;
+
 	return new DatabaseActions(userID);
-})();
+};

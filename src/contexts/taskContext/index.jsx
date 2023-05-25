@@ -4,8 +4,10 @@ import React, { createContext, useReducer } from "react";
 import actions from "./actions";
 import { reducer } from "./reducer";
 
-import { databaseActions } from "../../service/database-actions";
+import { databaseActions as getDataBaseActions } from "../../service/database-actions";
 import Cookies from "js-cookie";
+
+export const databaseActions = getDataBaseActions();
 
 const initialState = {
 	filterBy: "all",
