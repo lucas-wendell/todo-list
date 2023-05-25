@@ -50,6 +50,13 @@ export const reducer = (state, action) => {
 				tasks: newTasksState,
 			};
 		}
+
+		case actions.SET_ERROR: {
+			return {
+				...state,
+				error: !state.error,
+			};
+		}
 		default:
 			return { ...state };
 	}

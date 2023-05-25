@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 
 const initialState = {
 	filterBy: "all",
+	error: false,
 	tasks: Cookies.get("user") ? await databaseActions.getInitialData() : [],
 };
 
@@ -55,6 +56,9 @@ export const TasksProvider = ({ children }) => {
 		},
 		clearCompletedTasks: () => {
 			dispatch({ type: actions.CLEAR_COMPLETED_TASKS });
+		},
+		setError: () => {
+			dispatch({ type: actions.SET_ERROR });
 		},
 	};
 
