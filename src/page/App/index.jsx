@@ -6,12 +6,11 @@ import { Container, ImageContainer } from "./styles";
 
 import { ThemeProvider } from "styled-components";
 import { TodoListContainer } from "../../components/TodoListContainer";
-
-import { TasksProvider } from "../../contexts/taskContext";
 import { ThemeContext } from "../../contexts/themeContext";
 
 import Cookies from "js-cookie";
 import { Modal } from "../../components/Modal";
+import { TasksProvider } from "../../contexts/taskContext";
 
 export const Home = () => {
 	const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { databaseActions } from "./index";
+import Cookies from "js-cookie";
 import actions from "./actions";
 
 export const reducer = (state, action) => {
@@ -8,14 +8,16 @@ export const reducer = (state, action) => {
 				return { ...state, tasks: [...action.payload] };
 			}
 
+			const userID = JSON.parse(Cookies.get("user"));
 			const newTask = action.payload;
-			databaseActions.updateTasks(newTask);
+			state.databaseActions.updateTasks(newTask, userID);
 
 			return { ...state, tasks: [...state.tasks, newTask] };
 		}
 		case actions.REORDER_TASKS: {
 			const reorderedTasks = [...action.payload];
-			databaseActions.updateTasks(reorderedTasks);
+			const userID = JSON.parse(Cookies.get("user"));
+			state.databaseActions.updateTasks(reorderedTasks, userID);
 			return { ...state, tasks: reorderedTasks };
 		}
 		case actions.FILTER_TASKS_BY: {
@@ -23,7 +25,8 @@ export const reducer = (state, action) => {
 		}
 		case actions.DELETE_TASK: {
 			const newTasks = state.tasks.filter((task) => task.id !== action.payload);
-			databaseActions.updateTasks(newTasks);
+			const userID = JSON.parse(Cookies.get("user"));
+			state.databaseActions.updateTasks(newTasks, userID);
 			return {
 				...state,
 				tasks: newTasks,
@@ -31,8 +34,9 @@ export const reducer = (state, action) => {
 		}
 		case actions.CLEAR_COMPLETED_TASKS: {
 			const newTasks = state.tasks.filter((task) => !task.isCompleted);
+			const userID = JSON.parse(Cookies.get("user"));
 
-			databaseActions.updateTasks(newTasks);
+			state.databaseActions.updateTasks(newTasks, userID);
 			return {
 				...state,
 				tasks: newTasks,
@@ -44,7 +48,9 @@ export const reducer = (state, action) => {
 					? { ...task, isCompleted: !task.isCompleted }
 					: task
 			);
-			databaseActions.updateTasks(newTasksState);
+			const userID = JSON.parse(Cookies.get("user"));
+
+			state.databaseActions.updateTasks(newTasksState, userID);
 			return {
 				...state,
 				tasks: newTasksState,
@@ -57,7 +63,20 @@ export const reducer = (state, action) => {
 				error: !state.error,
 			};
 		}
-		default:
+		// case actions.SET_ACTIONS: {
+		// 	return {
+		// 		...state,
+		// 		databaseActions: action.payload,
+		// 	};
+		// }
+		case actions.SET_INITIAL_STATE: {
+			return {
+				...action.payload,
+			};
+		}
+
+		default: {
 			return { ...state };
+		}
 	}
 };

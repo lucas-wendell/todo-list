@@ -1,26 +1,50 @@
 import P from "prop-types";
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 
 import actions from "./actions";
 import { reducer } from "./reducer";
 
-import { databaseActions as getDataBaseActions } from "../../service/database-actions";
 import Cookies from "js-cookie";
+import { DatabaseActions } from "../../service/database-actions";
 
-export const databaseActions = getDataBaseActions();
+const createInititalState = async () => {
+	try {
+		const userID = Cookies.get("user")
+			? JSON.parse(Cookies.get("user")).uid
+			: "";
+		const databaseInstance = new DatabaseActions(userID);
+		const newState = {
+			databaseActions: databaseInstance,
+			filterBy: "all",
+			error: false,
+			tasks: await databaseInstance.userData,
+		};
+		return {
+			...newState,
+		};
+	} catch (error) {
+		return { error };
+	}
+};
 
-const initialState = {
+let initialState = {
+	databaseActions: {},
 	filterBy: "all",
 	error: false,
-	tasks: Cookies.get("user") ? await databaseActions.getInitialData() : [],
+	tasks: [],
 };
 
 export const TasksContext = createContext();
 
 export const TasksProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	const tokenString = Cookies.get("user");
-	if (!tokenString) return null;
+
+	useEffect(() => {
+		if (!Cookies.get("user")) return null;
+		createInititalState().then((res) =>
+			dispatch({ type: actions.SET_INITIAL_STATE, payload: res })
+		);
+	}, []);
 
 	const filteredTasks = state.tasks.filter((task) => {
 		if (state.filterBy === "all") {
@@ -62,6 +86,9 @@ export const TasksProvider = ({ children }) => {
 		setError: () => {
 			dispatch({ type: actions.SET_ERROR });
 		},
+		// setActions: (databaseActions) => {
+		// 	dispatch({ type: actions.SET_ACTIONS, payload: databaseActions });
+		// },
 	};
 
 	return (
