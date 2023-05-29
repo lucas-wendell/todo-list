@@ -4,18 +4,18 @@ import Cookies from "js-cookie";
 
 export class DatabaseActions {
 	constructor(userID) {
-		// this.docRef = doc(database, "users", userID);
-		// this.userID = userID;
-		this.userData = this.getInitialData(userID);
+		this.docRef = doc(database, "users", userID);
+		this.userID = userID;
+		this.userData = this.getInitialData();
 	}
 
-	async addUser(userID) {
+	async addUser() {
 		try {
 			const userData = {
 				tasks: [],
-				token: userID,
+				token: this.userID,
 			};
-			await setDoc(doc(database, "users", userID), userData);
+			await setDoc(this.docRef, userData);
 		} catch (e) {
 			Cookies.set("error", true);
 			console.log("addUser");
@@ -23,10 +23,9 @@ export class DatabaseActions {
 		}
 	}
 
-	async getUserData(userID) {
-		console.log(userID);
+	async getUserData() {
 		try {
-			const docRef = doc(database, "users", userID);
+			const docRef = this.docRef;
 			const docSnap = await getDoc(docRef);
 
 			return docSnap.data();
@@ -37,8 +36,8 @@ export class DatabaseActions {
 		}
 	}
 
-	async getInitialData(userID) {
-		const data = await this.getUserData(userID);
+	async getInitialData() {
+		const data = await this.getUserData();
 		if (!data) {
 			this.addUser();
 			return [];
@@ -47,16 +46,15 @@ export class DatabaseActions {
 		return data.tasks;
 	}
 
-	async updateTasks(newTasks, userID) {
-		console.log(userID);
+	async updateTasks(newTasks) {
 		try {
-			const data = await this.getUserData(userID);
+			const data = await this.getUserData();
 			const tasksToAddInDatabase = [...data.tasks];
 			if (!Array.isArray(newTasks)) {
 				tasksToAddInDatabase.unshift(newTasks);
 			}
 
-			await setDoc(doc(database, "users", userID), {
+			await setDoc(this.docRef, {
 				...data,
 				tasks: Array.isArray(newTasks)
 					? [...newTasks]

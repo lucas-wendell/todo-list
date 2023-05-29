@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import actions from "./actions";
 
 export const reducer = (state, action) => {
@@ -7,20 +6,19 @@ export const reducer = (state, action) => {
 			if (Array.isArray(action.payload)) {
 				return { ...state, tasks: [...action.payload] };
 			}
-
-			const userID = JSON.parse(Cookies.get("user")).uid;
 			const newTask = action.payload;
 			const oldTasks = [...state.tasks];
 
-			state.databaseActions.updateTasks(newTask, userID);
+			state.databaseActions.updateTasks(newTask);
 			oldTasks.unshift(newTask);
+
 			return { ...state, tasks: [...oldTasks] };
 		}
 
 		case actions.REORDER_TASKS: {
 			const reorderedTasks = [...action.payload];
-			const userID = JSON.parse(Cookies.get("user")).uid;
-			state.databaseActions.updateTasks(reorderedTasks, userID);
+			state.databaseActions.updateTasks(reorderedTasks);
+
 			return { ...state, tasks: reorderedTasks };
 		}
 
@@ -30,8 +28,8 @@ export const reducer = (state, action) => {
 
 		case actions.DELETE_TASK: {
 			const newTasks = state.tasks.filter((task) => task.id !== action.payload);
-			const userID = JSON.parse(Cookies.get("user")).uid;
-			state.databaseActions.updateTasks(newTasks, userID);
+			state.databaseActions.updateTasks(newTasks);
+
 			return {
 				...state,
 				tasks: newTasks,
@@ -40,9 +38,8 @@ export const reducer = (state, action) => {
 
 		case actions.CLEAR_COMPLETED_TASKS: {
 			const newTasks = state.tasks.filter((task) => !task.isCompleted);
-			const userID = JSON.parse(Cookies.get("user")).uid;
+			state.databaseActions.updateTasks(newTasks);
 
-			state.databaseActions.updateTasks(newTasks, userID);
 			return {
 				...state,
 				tasks: newTasks,
@@ -55,9 +52,8 @@ export const reducer = (state, action) => {
 					? { ...task, isCompleted: !task.isCompleted }
 					: task
 			);
-			const userID = JSON.parse(Cookies.get("user")).uid;
+			state.databaseActions.updateTasks(newTasksState);
 
-			state.databaseActions.updateTasks(newTasksState, userID);
 			return {
 				...state,
 				tasks: newTasksState,
