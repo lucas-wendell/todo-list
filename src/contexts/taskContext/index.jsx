@@ -44,6 +44,13 @@ export const TasksProvider = ({ children }) => {
 		createInititalState().then((res) =>
 			dispatch({ type: actions.SET_INITIAL_STATE, payload: res })
 		);
+
+		return () => ({
+			databaseActions: {},
+			filterBy: "all",
+			error: false,
+			tasks: [],
+		});
 	}, []);
 
 	const filteredTasks = state.tasks.filter((task) => {
@@ -86,9 +93,6 @@ export const TasksProvider = ({ children }) => {
 		setError: () => {
 			dispatch({ type: actions.SET_ERROR });
 		},
-		// setActions: (databaseActions) => {
-		// 	dispatch({ type: actions.SET_ACTIONS, payload: databaseActions });
-		// },
 	};
 
 	return (
