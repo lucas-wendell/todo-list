@@ -18,10 +18,13 @@ export class DatabaseActions {
 			await setDoc(doc(database, "users", userID), userData);
 		} catch (e) {
 			Cookies.set("error", true);
+			console.log("addUser");
+			console.error(e);
 		}
 	}
 
 	async getUserData(userID) {
+		console.log(userID);
 		try {
 			const docRef = doc(database, "users", userID);
 			const docSnap = await getDoc(docRef);
@@ -29,6 +32,8 @@ export class DatabaseActions {
 			return docSnap.data();
 		} catch (error) {
 			Cookies.set("error", true);
+			console.log("getUserData");
+			console.error(error);
 		}
 	}
 
@@ -43,17 +48,24 @@ export class DatabaseActions {
 	}
 
 	async updateTasks(newTasks, userID) {
+		console.log(userID);
 		try {
-			const data = await this.getUserData();
+			const data = await this.getUserData(userID);
+			const tasksToAddInDatabase = [...data.tasks];
+			if (!Array.isArray(newTasks)) {
+				tasksToAddInDatabase.unshift(newTasks);
+			}
 
 			await setDoc(doc(database, "users", userID), {
 				...data,
 				tasks: Array.isArray(newTasks)
 					? [...newTasks]
-					: [...data.tasks, newTasks],
+					: [...tasksToAddInDatabase],
 			});
 		} catch (error) {
 			Cookies.set("error", true);
+			console.log("updateTasks");
+			console.error(error);
 		}
 	}
 }
