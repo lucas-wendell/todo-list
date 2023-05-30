@@ -8,13 +8,14 @@ export const dark = {
 		activeColor: "hsl(220, 98%, 61%)",
 		bgColor: "hsl(235, 21%, 11%)",
 		navColor: "hsl(0, 0%, 98%)",
-		circleColor: "hsl(234, 11%, 52%)",
+		circleColor: "hsl(237, 14%, 26%)",
 		primaryTextColor: "hsl(236, 33%, 92%)",
 		secondaryTextColor: "hsl(237, 14%, 26%)",
 		tertiaryTextColor: "hsl(234, 11%, 52%)",
 		taskBgColor: "hsl(235, 24%, 19%)",
 		borderColor: "hsl(237, 14%, 26%)",
 	},
+	image: "darkImage",
 };
 
 export const light = {
@@ -27,11 +28,12 @@ export const light = {
 		activeColor: "hsl(220, 98%, 61%)",
 		bgColor: "hsl(0, 0%, 98%)",
 		navColor: "hsl(0, 0%, 98%)",
-		circleColor: "hsl(236, 33%, 92%)",
+		circleColor: "hsl(236, 9%, 61%)",
 		primaryTextColor: "hsl(235, 19%, 35%)",
 		secondaryTextColor: "hsl(233, 11%, 84%)",
-		tertiaryTextColor: "hsl(236, 9%, 61%)",
+		tertiaryTextColor: "hsl(233, 11%, 84%)",
 		taskBgColor: "hsl(0, 0%, 98%)",
-		borderColor: "hsl(237, 14%, 26%)",
+		borderColor: "hsl(233, 11%, 84%)",
 	},
+	image: "lightImage",
 };

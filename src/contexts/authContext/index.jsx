@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import Cookie from "js-cookie";
 
 import P from "prop-types";
 import {
@@ -6,9 +7,10 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 	signInWithEmailAndPassword,
+	signOut,
 } from "firebase/auth";
 
-import { auth } from "../utils/firebase";
+import { auth } from "../../service/firebase";
 import { useNavigate } from "react-router-dom";
 
 import { reducer } from "./reducer";
@@ -21,16 +23,25 @@ export const AuthContext = createContext({
 const logIn = async (provider, dispatch, navigate) => {
 	try {
 		const result = await signInWithPopup(auth, provider);
-		const uid = result.user.uid;
+		Cookie.set("user", JSON.stringify(result.user));
 
-		localStorage.setItem("uid", uid);
-		if (uid) {
+		if (Cookie.get("user")) {
 			navigate("/");
 		}
 	} catch (error) {
-		localStorage.setItem("uid", "");
+		Cookie.remove("user");
 		dispatch({ type: actions.SET_ERROR, payload: error.code });
-		console.log(error);
+	}
+};
+
+const logOut = async (dispatch, navigate) => {
+	try {
+		await signOut(auth);
+
+		Cookie.remove("user");
+		navigate("/login");
+	} catch (error) {
+		dispatch({ type: actions.SET_ERROR, payload: error.code });
 	}
 };
 
@@ -54,15 +65,18 @@ export const AuthProvider = ({ children }) => {
 		logInWithEmail: async (email, password) => {
 			try {
 				const result = await signInWithEmailAndPassword(auth, email, password);
-				const uid = result.user.uid;
-				localStorage.setItem("uid", uid);
-				if (uid) {
+				Cookie.set("user", JSON.stringify(result.user));
+
+				if (Cookie.get("user")) {
 					navigate("/");
 				}
 			} catch (error) {
-				localStorage.setItem("uid", "");
+				Cookie.remove("user");
 				dispatch({ type: actions.SET_ERROR, payload: error.code });
 			}
+		},
+		logOut: () => {
+			logOut(dispatch, navigate);
 		},
 	};
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

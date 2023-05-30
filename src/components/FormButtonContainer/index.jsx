@@ -12,7 +12,7 @@ import { DetailForm } from "../DetailForm";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { AuthContext } from "../../authContext";
+import { AuthContext } from "../../contexts/authContext";
 
 export const FormButtonContainer = () => {
 	const { logInWithGitHub, logInWithGoogle } = useContext(AuthContext);
