@@ -40,18 +40,16 @@ export const TasksProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	useEffect(() => {
-		if (!Cookies.get("user")) return null;
-		createInititalState().then((res) =>
-			dispatch({ type: actions.SET_INITIAL_STATE, payload: res })
-		);
+		const createState = async () => {
+			const initialState = await createInititalState();
 
-		return () => ({
-			databaseActions: {},
-			filterBy: "all",
-			error: false,
-			tasks: [],
-		});
+			dispatch({ type: actions.SET_INITIAL_STATE, payload: initialState });
+		};
+
+		createState();
 	}, []);
+
+	if (!Cookies.get("user")) return null;
 
 	const filteredTasks = state.tasks.filter((task) => {
 		if (state.filterBy === "all") {
