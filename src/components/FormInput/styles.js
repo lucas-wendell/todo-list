@@ -28,7 +28,6 @@ export const Paragraph = styled.p`
 	${({ theme }) => css`
 		color: ${theme.colors.primaryTextColor};
 		font-weight: ${theme.fontWeights.bold};
-		/* margin-bottom: 0.5rem; */
 	`}
 `;
 
@@ -42,6 +41,10 @@ export const Input = styled.input`
 
 		&::placeholder {
 			color: ${theme.colors.primaryTextColor};
+		}
+
+		@media (max-width: 380px) {
+			font-size: 0.9rem;
 		}
 	`}
 `;
