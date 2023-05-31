@@ -21,6 +21,7 @@ export const Heading = styled.h1`
 	${({ theme }) => css`
 		color: ${theme.colors.navColor};
 		text-transform: capitalize;
+		text-align: center;
 	`}
 `;
 
