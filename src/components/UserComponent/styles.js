@@ -43,6 +43,10 @@ export const ProfileContainer = styled.div`
 			}
 		}
 
+		.onErrorIcon {
+			color: ${theme.colors.taskBgColor};
+		}
+
 		& > img {
 			width: 100%;
 			height: 100%;
