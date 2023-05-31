@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { AiOutlineUser } from "react-icons/ai";
@@ -9,7 +7,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { SubmitButton } from "../SubmitButton";
 import { FormInput } from "../FormInput";
 
-import { Container, Paragraph, InputContainer, Form } from "./styles";
+import { Container, InputContainer, Form } from "./styles";
 import { AuthContext } from "../../contexts/authContext";
 
 export const FormContainer = () => {
@@ -62,9 +60,6 @@ export const FormContainer = () => {
 				</InputContainer>
 				<SubmitButton type="submit">Sign In</SubmitButton>
 			</Form>
-			<Paragraph>
-				Don&apos;t have account?<Link>Sign Up</Link>
-			</Paragraph>
 		</Container>
 	);
 };
