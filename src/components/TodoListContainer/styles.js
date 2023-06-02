@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	width: 60%;
+	width: 70%;
 	max-width: 70rem;
 	z-index: 10;
 	position: absolute;
@@ -11,4 +11,8 @@ export const Container = styled.div`
 	left: 50%;
 	transform: translateX(-50%);
 	padding: 3rem;
+
+	@media (max-width: 530px) {
+		width: 80%;
+	}
 `;
