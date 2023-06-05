@@ -19,10 +19,7 @@ export const CommandBar = () => {
 			<Container>
 				<p>{tasksLeft} items left</p>
 				<FilterButton />
-				<p
-					className="filtersParagraph"
-					onClick={handleOnClearComponentIsClicked}
-				>
+				<p className="clearParagraph" onClick={handleOnClearComponentIsClicked}>
 					Clear Completed
 				</p>
 			</Container>

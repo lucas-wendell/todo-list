@@ -7,5 +7,9 @@ export const Container = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		color: ${theme.colors.circleColor};
+
+		.clearParagraph {
+			cursor: pointer;
+		}
 	`}
 `;
