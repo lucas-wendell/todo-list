@@ -63,6 +63,7 @@ export const TasksProvider = ({ children }) => {
 
 	const value = {
 		tasks: filteredTasks,
+		filterBy: state.filterBy,
 		tasksLeft: state.tasks.filter((task) => !task.isCompleted).length,
 		addTask: (newTask) => {
 			dispatch({ type: actions.ADD_TASK, payload: newTask });
