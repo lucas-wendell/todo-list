@@ -28,6 +28,10 @@ export const ModalContainer = styled.div`
 		border-radius: 1rem;
 		padding: 2rem;
 		width: 60%;
+
+		@media (max-width: 400px) {
+			padding: 1.5rem;
+		}
 	`}
 `;
 
@@ -71,6 +75,18 @@ export const ModalContent = styled.div`
 
 		& p {
 			font-size: 1.2rem;
+		}
+
+		@media (max-width: 590px) {
+			& img {
+				max-width: 20rem;
+			}
+		}
+
+		@media (max-width: 400px) {
+			& img {
+				max-width: 15rem;
+			}
 		}
 	`}
 `;
