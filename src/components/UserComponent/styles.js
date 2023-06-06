@@ -5,6 +5,10 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 1rem;
+
+	@media (max-width: 768px) {
+		gap: 0.5rem;
+	}
 `;
 
 export const ProfileContainer = styled.div`
@@ -61,6 +65,11 @@ export const ProfileContainer = styled.div`
 				display: none;
 			}
 		}
+
+		@media (max-width: 768px) {
+			width: 3rem;
+			height: 3rem;
+		}
 	`}
 `;
 
@@ -76,6 +85,16 @@ export const TextContainer = styled.div`
 
 		h1 {
 			font-size: 1.6rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		p {
+			font-size: 0.8rem;
+		}
+
+		h1 {
+			font-size: 1.4rem;
 		}
 	}
 `;
