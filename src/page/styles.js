@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import bgDarkImage from "../../assets/bg-desktop-dark.jpg";
-import bgLightImage from "../../assets/bg-desktop-light.jpg";
+import bgDarkImage from "../assets/bg-desktop-dark.jpg";
+import bgLightImage from "../assets/bg-desktop-light.jpg";
 
 const images = {
 	lightImage: bgLightImage,

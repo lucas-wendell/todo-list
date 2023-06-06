@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import * as themes from "../../styles/theme";
 
 import { useNavigate } from "react-router-dom";
-import { Container, ImageContainer } from "./styles";
+import { Container, ImageContainer } from "../styles";
 
 import { ThemeProvider } from "styled-components";
 import { TodoListContainer } from "../../components/TodoListContainer";

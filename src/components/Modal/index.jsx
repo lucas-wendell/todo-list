@@ -16,7 +16,6 @@ export const Modal = () => {
 	}, [cookieValue]);
 
 	const handleClose = () => {
-		console.log("clicou!");
 		Cookies.set("error", false);
 		setVisibility((prevVisibility) => !prevVisibility);
 	};
