@@ -52,11 +52,30 @@ export const ProfileContainer = styled.div`
 			height: 100%;
 			border-radius: 50%;
 		}
+
+		@media (max-width: 768px) {
+			width: 4rem;
+			height: 4rem;
+
+			.buttonDiv {
+				display: none;
+			}
+		}
 	`}
 `;
 
 export const TextContainer = styled.div`
 	p {
 		font-size: 1.2rem;
+	}
+
+	@media (max-width: 768px) {
+		p {
+			font-size: 1.1rem;
+		}
+
+		h1 {
+			font-size: 1.6rem;
+		}
 	}
 `;
