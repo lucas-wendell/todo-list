@@ -6,6 +6,9 @@ const setSecondaryStyles = (theme, type) => {
 			padding: 1rem 0;
 			border-radius: 0.2rem;
 			background-color: ${theme.colors.taskBgColor};
+			-webkit-box-shadow: 0px 0px 49px -9px rgba(0, 0, 0, 0.56);
+			-moz-box-shadow: 0px 0px 49px -9px rgba(0, 0, 0, 0.56);
+			box-shadow: 0px 0px 49px -9px rgba(0, 0, 0, 0.56);
 
 			@media (min-width: 460px) {
 				display: none;
