@@ -13,7 +13,31 @@ export const Container = styled.div`
 		}
 
 		.iconContainer {
-			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.7rem;
+		}
+
+		.iconContainer button {
+			color: ${theme.colors.navColor};
+			height: 1.5rem;
+			background: none;
+			border: none;
+
+			& svg {
+				cursor: pointer;
+			}
+		}
+
+		.logOutButton {
+			display: none;
+		}
+
+		@media (max-width: 768px) {
+			.logOutButton {
+				display: block;
+			}
 		}
 	`}
 `;

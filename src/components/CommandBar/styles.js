@@ -8,25 +8,8 @@ export const Container = styled.div`
 		justify-content: space-between;
 		color: ${theme.colors.circleColor};
 
-		.filtersParagraph {
-			text-transform: capitalize;
-			transition: 300ms all ease-in-out;
-		}
-
-		.filtersParagraph:hover {
+		.clearParagraph {
 			cursor: pointer;
-			color: ${theme.colors.primaryTextColor};
-		}
-
-		.filtersParagraph.active {
-			color: ${theme.colors.activeColor};
 		}
 	`}
-`;
-
-export const FiltersContainer = styled.div`
-	gap: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 `;

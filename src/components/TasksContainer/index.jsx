@@ -6,6 +6,7 @@ import { CommandBar } from "../CommandBar";
 
 import { Task } from "../Task";
 import { TasksContext } from "../../contexts/taskContext";
+import { FilterButton } from "../FilterButton";
 
 export const TasksContainer = () => {
 	const { tasks, reorderTasks } = useContext(TasksContext);
@@ -23,31 +24,34 @@ export const TasksContainer = () => {
 		<DragDropContext onDragEnd={handleOnDragEnd}>
 			<Droppable droppableId="tasks">
 				{(provided) => (
-					<Container {...provided.droppableProps} ref={provided.innerRef}>
-						{tasks.map((task, index) => (
-							<Draggable
-								key={`${task.id}-key`}
-								draggableId={task.id}
-								index={index}
-							>
-								{(provided) => (
-									<div
-										{...provided.draggableProps}
-										{...provided.dragHandleProps}
-										ref={provided.innerRef}
-									>
-										<Task
-											title={task.title}
-											isCompleted={task.isCompleted}
-											id={task.id}
-										/>
-									</div>
-								)}
-							</Draggable>
-						))}
-						{provided.placeholder}
-						<CommandBar />
-					</Container>
+					<>
+						<Container {...provided.droppableProps} ref={provided.innerRef}>
+							{tasks.map((task, index) => (
+								<Draggable
+									key={`${task.id}-key`}
+									draggableId={task.id}
+									index={index}
+								>
+									{(provided) => (
+										<div
+											{...provided.draggableProps}
+											{...provided.dragHandleProps}
+											ref={provided.innerRef}
+										>
+											<Task
+												title={task.title}
+												isCompleted={task.isCompleted}
+												id={task.id}
+											/>
+										</div>
+									)}
+								</Draggable>
+							))}
+							{provided.placeholder}
+							<CommandBar />
+						</Container>
+						<FilterButton type="secondary" />
+					</>
 				)}
 			</Droppable>
 		</DragDropContext>
