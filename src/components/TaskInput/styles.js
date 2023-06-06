@@ -29,5 +29,11 @@ export const Input = styled.input`
 		&:focus::-webkit-input-placeholder {
 			color: transparent;
 		}
+
+		@media (max-width: 360px) {
+			&::placeholder {
+				font-size: 1rem;
+			}
+		}
 	`}
 `;
