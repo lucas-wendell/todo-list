@@ -1,6 +1,6 @@
 <a id='top'></a>
 
-<h1 align='center'><a href='https://calculator-rho-ten.vercel.app/' target='_blank'>TODO-LIST</a></h1>
+<h1 align='center'><a href='https://todo-list-l-wendell.vercel.app/' target='_blank'>TODO-LIST</a></h1>
 
 <div align='center'>
 
@@ -102,4 +102,4 @@ npm start
 
 #
 
-<p align='center'><b>🔝<a href='#top'>Voltar Para o topo</a>🔝</b> <b>|</b> <b>↗️<a href='https://calculator-rho-ten.vercel.app/' target='_blank'>Visitar projeto</a>↗️</b></p>
+<p align='center'><b>🔝<a href='#top'>Voltar Para o topo</a>🔝</b> <b>|</b> <b>↗️<a href='https://todo-list-l-wendell.vercel.app/' target='_blank'>Visitar projeto</a>↗️</b></p>
